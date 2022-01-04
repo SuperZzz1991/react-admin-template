@@ -1,5 +1,5 @@
-import * as types from "../action-types";
-import { reqUserInfo } from "@/api/user";
+import * as types from '../action-types';
+import { reqUserInfo } from '@/api/user';
 
 export const getUserInfo = (token) => (dispatch) => {
   return new Promise((resolve, reject) => {

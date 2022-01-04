@@ -49,7 +49,7 @@ class Typing {
     if (!ele.val.length) {
       if (ele.parent) this.play(ele.parent)
       else this.opts.done()
-      return;
+      return
     }
     let current = ele.val.shift()  //获取第一个元素，同时删除数组中的第一个元素
     if (typeof current === 'string') {

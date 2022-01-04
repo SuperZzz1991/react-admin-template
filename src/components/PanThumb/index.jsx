@@ -1,9 +1,9 @@
-import React from "react";
-import { PropTypes } from "prop-types";
-import "./index.less";
+import React from 'react'
+import { PropTypes } from 'prop-types'
+import './index.less'
 
 const PanThumb = (props) => {
-  const { image, zIndex, width, height, className } = props;
+  const { image, zIndex, width, height, className } = props
   return (
     <div
       className={`pan-item ${className}`}
@@ -13,13 +13,13 @@ const PanThumb = (props) => {
         width,
       }}
     >
-      <div className="pan-info">
-        <div className="pan-info-roles-container">{props.children}</div>
+      <div className='pan-info'>
+        <div className='pan-info-roles-container'>{props.children}</div>
       </div>
-      <img src={image} className="pan-thumb" alt="" />
+      <img src={image} className='pan-thumb' alt='' />
     </div>
-  );
-};
+  )
+}
 
 PanThumb.propTypes = {
   image: PropTypes.string.isRequired,
@@ -27,13 +27,13 @@ PanThumb.propTypes = {
   width: PropTypes.string,
   height: PropTypes.string,
   className: PropTypes.string,
-};
+}
 
 PanThumb.defaultProps = {
-  width: "150px",
-  height: "150px",
+  width: '150px',
+  height: '150px',
   zIndex: 1,
-  className: "",
-};
+  className: '',
+}
 
-export default PanThumb;
+export default PanThumb

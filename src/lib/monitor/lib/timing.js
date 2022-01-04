@@ -1,31 +1,31 @@
-import tracker from '../utils/tracker';
-import onload from '../utils/onload';
-import getLastEvent from '../utils/getLastEvent';
-import getSelector from '../utils/getSelector';
+import tracker from '../utils/tracker'
+import onload from '../utils/onload'
+import getLastEvent from '../utils/getLastEvent'
+import getSelector from '../utils/getSelector'
 export function timing() {
-    let FMP, LCP;
+    let FMP, LCP
     // 增加一个性能条目的观察者
     if (PerformanceObserver) {
         new PerformanceObserver((entryList, observer) => {
-            let perfEntries = entryList.getEntries();
-            FMP = perfEntries[0];//startTime 2000以后
-            observer.disconnect();//不再观察了
-        }).observe({ entryTypes: ['element'] });//观察页面中的意义的元素
+            let perfEntries = entryList.getEntries()
+            FMP = perfEntries[0]//startTime 2000以后
+            observer.disconnect()//不再观察了
+        }).observe({ entryTypes: ['element'] })//观察页面中的意义的元素
 
         new PerformanceObserver((entryList, observer) => {
-            let perfEntries = entryList.getEntries();
-            LCP = perfEntries[0];
-            observer.disconnect();//不再观察了
-        }).observe({ entryTypes: ['largest-contentful-paint'] });//观察页面中的意义的元素
+            let perfEntries = entryList.getEntries()
+            LCP = perfEntries[0]
+            observer.disconnect()//不再观察了
+        }).observe({ entryTypes: ['largest-contentful-paint'] })//观察页面中的意义的元素
 
         new PerformanceObserver((entryList, observer) => {
-            let lastEvent = getLastEvent();
-            let firstInput = entryList.getEntries()[0];
-            console.log('FID', firstInput);
+            let lastEvent = getLastEvent()
+            let firstInput = entryList.getEntries()[0]
+            console.log('FID', firstInput)
             if (firstInput) {
                 //processingStart开始处理的时间 startTime开点击的时间 差值就是处理的延迟
-                let inputDelay = firstInput.processingStart - firstInput.startTime;
-                let duration = firstInput.duration;//处理的耗时
+                let inputDelay = firstInput.processingStart - firstInput.startTime
+                let duration = firstInput.duration//处理的耗时
                 if (inputDelay > 0 || duration > 0) {
                     tracker.send({
                         kind: 'experience',//用户体验指标

@@ -8,8 +8,8 @@ import store from './store'
 
 import App from './App'
 import './App.less'
-import "@/styles/index.less"
-import "./mock"
+import '@/styles/index.less'
+import './mock'
 import '@/lib/monitor'
 
 ReactDOM.render(

@@ -5,9 +5,9 @@ export function blankScreen() {
     let emptyPoints = 0;
     function getSelector(element) {
         if (element.id) {
-            return "#" + element.id;
+            return '#' + element.id;
         } else if (element.className) {// a b c => .a.b.c
-            return "." + element.className.split(' ').filter(item => !!item).join('.');
+            return '.' + element.className.split(' ').filter(item => !!item).join('.');
         } else {
             return element.nodeName.toLowerCase();
         }
@@ -36,8 +36,8 @@ export function blankScreen() {
                 kind: 'stability',
                 type: 'blank',
                 emptyPoints,
-                screen: window.screen.width + "X" + window.screen.height,
-                viewPoint: window.innerWidth + "X" + window.innerHeight,
+                screen: window.screen.width + 'X' + window.screen.height,
+                viewPoint: window.innerWidth + 'X' + window.innerHeight,
                 selector: getSelector(centerElements[0])
             });
         }

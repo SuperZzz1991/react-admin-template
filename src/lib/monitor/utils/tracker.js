@@ -1,7 +1,7 @@
-import { tracker } from "@/api/monitor";
-import userAgent from "user-agent";
-import store from "@/store";
-import { addBug } from "@/store/actions"
+import { tracker } from '@/api/monitor';
+import userAgent from 'user-agent';
+import store from '@/store';
+import { addBug } from '@/store/actions'
 
 function getExtraData() {
   return {

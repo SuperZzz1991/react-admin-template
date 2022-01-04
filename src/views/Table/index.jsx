@@ -101,7 +101,7 @@ const TableComponent = () => {
                             </Select>
                         </Form.Item>
                         <Form.Item>
-                            <Button type="primary" icon={<SearchOutlined />} onClick={fetchData}>
+                            <Button type='primary' icon={<SearchOutlined />} onClick={fetchData}>
                                 Search
                             </Button>
                         </Form.Item>

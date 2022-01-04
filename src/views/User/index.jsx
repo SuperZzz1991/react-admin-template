@@ -55,11 +55,11 @@ const User = () => {
                     <Button type='primary' onClick={handleAdd}>添加用户</Button>
                 </span>
             }>
-                <Table bordered rowKey="id" dataSource={datasource} pagination={false}>
-                    <Column title="用户ID" dataIndex="id" key="id" align="center"/>
-                    <Column title="用户名称" dataIndex="name" key="name" align="center"/>
-                    <Column title="用户角色" dataIndex="role" key="role" align="center"/>
-                    <Column title="用户描述" dataIndex="description" key="description" align="center" />
+                <Table bordered rowKey='id' dataSource={datasource} pagination={false}>
+                    <Column title='用户ID' dataIndex='id' key='id' align='center'/>
+                    <Column title='用户名称' dataIndex='name' key='name' align='center'/>
+                    <Column title='用户角色' dataIndex='role' key='role' align='center'/>
+                    <Column title='用户描述' dataIndex='description' key='description' align='center' />
                     <Column title='操作' key='action' align='center' render={(text, row, index) => {
                         return(
                             <Space>
