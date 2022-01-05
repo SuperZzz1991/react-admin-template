@@ -1,15 +1,24 @@
-import excelApi from './excel'
-import loginApi from './login'
-import monitorApi from './monitor'
-import remoteSearchApi from './remoteSearch'
-import tableApi from './table'
+import {HttpMethod} from '@/ts/enums'
 import userApi from './user'
+import dashboardApi from './dashboard'
+import tableApi from './table'
+import excelApi from './excel'
+
+const userLogin = {
+    url: '/login',
+    method: HttpMethod.POST
+}
+
+const userLogout = {
+    url: '/logout',
+    method: HttpMethod.POST
+}
 
 export {
-    excelApi,
-    loginApi,
-    monitorApi,
-    remoteSearchApi,
+    userLogin,
+    userLogout,
+    userApi,
+    dashboardApi,
     tableApi,
-    userApi
+    excelApi
 }

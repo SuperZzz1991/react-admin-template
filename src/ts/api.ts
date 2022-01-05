@@ -77,34 +77,6 @@ class BaseTreeApi extends BaseApi {
 }
 
 /**
- * Excel类
- */
-export class ExcelApi extends BaseApi{
-    module: string = 'excel'
-}
-
-/**
- * Login类
- */
-export class LoginApi extends BaseApi{
-    module: string = ''
-}
-
-/**
- * Monitor类
- */
-export class MonitorApi extends BaseApi{
-    module: string = 'monitor'
-}
-
-/**
- * RemoteSearch类
- */
-export class RemoteSearchApi extends BaseApi{
-    module: string = ''
-}
-
-/**
  * Table类
  */
 export class TableApi extends BaseApi{
@@ -116,4 +88,18 @@ export class TableApi extends BaseApi{
  */
 export class UserApi extends BaseApi{
     module: string = 'user'
+}
+
+/**
+ * Dashboard类
+ */
+export class DashboardApi extends BaseApi{
+    module: string = 'dashboard'
+}
+
+/**
+ * Excel类
+ */
+export class ExcelApi extends BaseApi{
+    module: string = 'excel'
 }

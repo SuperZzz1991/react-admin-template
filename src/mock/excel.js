@@ -12,10 +12,10 @@ for (let i = 0; i < count; i++) {
   }))
 }
 const excelMock = {
-  excelList: (_) => {
+  getList: () => {
     return {
-      code: 20000,
-      data: { items: list }
+      state: '0000',
+      data: list
     }
   }
 }

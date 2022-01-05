@@ -10,7 +10,7 @@ import App from './App'
 import './App.less'
 import '@/styles/index.less'
 import './mock'
-import '@/lib/monitor'
+// import '@/lib/monitor'
 
 ReactDOM.render(
   <React.StrictMode>

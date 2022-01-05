@@ -14,14 +14,14 @@ import {
 } from 'antd'
 import EditForm from './Forms/editForm'
 
-import { pageInfo, del } from '@/api/table'
+import {tableApi} from '@/config/api'
+import {useRequest} from '@/utils/useRequest'
 
 const { Column } = Table
 const { Panel } = Collapse
 
 const TableComponent = () => {
     const [datasource, setDatasource] = useState([])
-    const [loading, setLoading] = useState(false)
     const [total, setTotal] = useState(0)
     const [pageParams, setPageParams] = useState({
         pageNum: 1,
@@ -45,13 +45,10 @@ const TableComponent = () => {
         }
     },[pageParams])
 
+    const {loading, request:pageInfoRequest} = useRequest(tableApi.pageInfo())
     const fetchData = async() => {
-        setLoading(true)
-        const {data = {}, error} = await pageInfo(pageParams)
-        if (error) {
-            message.error('获取数据失败')
-        }
-        setLoading(false)
+        const {data = {}, error} = await pageInfoRequest({...pageParams})
+        if(error) return
         setDatasource(data.data.items)
         setTotal(data.data.total)
     }
@@ -63,11 +60,12 @@ const TableComponent = () => {
         })
     }
 
-    const handleDelete = (row) => {
-        del({id:row.id}).then(res => {
-            message.success('删除成功')
-            fetchData()
-        })
+    const {request:deleteRequest} = useRequest(tableApi.delete())
+    const handleDelete = async (row) => {
+        const {error} = await deleteRequest({id:row.id})
+        if(error) return
+        message.success('删除成功')
+        fetchData()
     }
 
     const handleEdit = (row) => {

@@ -1,10 +1,10 @@
 import React, {useEffect, useState} from 'react'
 import {DeleteOutlined, EditOutlined} from '@ant-design/icons'
 import {Button, Card, message, Space, Table} from 'antd'
-
 import TypingCard from '@/components/TypingCard'
 
-import {deleteUser, getUsers} from '@/api/user'
+import {useRequest} from '@/utils/useRequest'
+import {userApi} from '@/config/api'
 
 const { Column } = Table
 
@@ -17,24 +17,24 @@ const User = () => {
         }
     }, [])
 
+    const {request:getListRequest} = useRequest(userApi.getList())
     const fetchData = async() => {
-        const result = await getUsers()
-        const { users, status } = result.data
-        if (status === 0) {
-            setDatasource(users)
-        }
+        const {data = {}, error} = await getListRequest()
+        if(error) return
+        setDatasource(data.data)
     }
 
-    const handleDelete = row => {
+    const {request:deleteRequest} = useRequest(userApi.delete())
+    const handleDelete = async (row) => {
         const { id } = row
         if (id === 'admin') {
             message.error('不能删除管理员用户！')
             return
         }
-        deleteUser({id}).then(res => {
-            message.success('删除成功')
-            fetchData()
-        })
+        const {error} = await deleteRequest({id:row.id})
+        if(error) return
+        message.success('删除成功')
+        fetchData()
     }
 
     const handleAdd = () => {
