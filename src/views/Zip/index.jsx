@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { Table, Tag, Form, Button, Input, message, Collapse } from 'antd'
 import { FileOutlined, FileZipOutlined } from '@ant-design/icons'
 
-import {useRequest} from '@/utils/useRequest'
+import {useRequest} from '@/utils/request'
 import {excelApi} from '@/config/api'
 
 const { Panel } = Collapse

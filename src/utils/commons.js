@@ -26,7 +26,7 @@ export function createHistory() {
 
 
 // token存储
-const tokenKey = 'token-key'
+const tokenKey = 'Token'
 
 export const getToken = () => {
   return Cookies.get(tokenKey)

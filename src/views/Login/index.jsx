@@ -5,19 +5,19 @@ import { Form, Input, Button, message, Spin } from 'antd'
 import { UserOutlined, LockOutlined } from '@ant-design/icons'
 import DocumentTitle from 'react-document-title'
 
-import { login, getUserInfo } from '@/store/actions'
+import { userLogin, userInfo } from '@/store/actions'
 
 import './index.less'
 
 const Login = (props) => {
-  const { token, login, getUserInfo } = props
+  const { token, userLogin, userInfo } = props
   const [loading, setLoading] = useState(false)
   const [form] = Form.useForm()
 
   const handleLogin = (username, password) => {
     // 登录完成后 发送请求 调用接口获取用户信息
     setLoading(true)
-    login(username, password).then(data => {
+    userLogin(username, password).then(data => {
       message.success('登录成功')
       handleUserInfo(data)
     }).catch(error => {
@@ -28,9 +28,7 @@ const Login = (props) => {
 
   // 获取用户信息
   const handleUserInfo = (token) => {
-    getUserInfo(token).then(data => {
-
-    }).catch(error => {
+    userInfo(token).catch(error => {
       message.error(error)
     })
   }
@@ -90,6 +88,6 @@ const Login = (props) => {
 
 // const WrapLogin = Form.create()(Login)
 
-export default connect((state) => state.user, { login, getUserInfo })(
+export default connect((state) => state.user, { userLogin, userInfo })(
     Login
 )

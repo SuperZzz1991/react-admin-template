@@ -7,7 +7,7 @@ import Settings from '@/components/Settings'
 import Hamburger from '@/components/Hamburger'
 import BreadCrumb from '@/components/BreadCrumb'
 
-import { logout, getUserInfo } from '@/store/actions'
+import { userLogout, userInfo } from '@/store/actions'
 
 import './index.less'
 
@@ -18,12 +18,12 @@ const LayoutHeader = (props) => {
     token,
     name,
     sidebarCollapsed,
-    logout,
-    getUserInfo,
+    userLogout,
+    userInfo,
     showSettings,
     fixedHeader,
   } = props
-  token && getUserInfo(token)
+  token && userInfo(token)
 
   const handleLogout = () => {
     Modal.confirm({
@@ -32,7 +32,7 @@ const LayoutHeader = (props) => {
       okText: '确定',
       cancelText: '取消',
       onOk: () => {
-          logout(name)
+          userLogout(name)
       }
     })
   }
@@ -84,4 +84,4 @@ const mapStateToProps = state => {
     ...state.settings,
   }
 }
-export default connect(mapStateToProps, { logout, getUserInfo })(LayoutHeader)
+export default connect(mapStateToProps, { userLogout, userInfo })(LayoutHeader)

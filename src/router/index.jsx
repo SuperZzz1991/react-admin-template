@@ -5,11 +5,11 @@ import { connect } from 'react-redux'
 import Layout from '@/views/Layout'
 import Login from '@/views/Login'
 
-import { getUserInfo } from '@/store/actions'
+import { userInfo } from '@/store/actions'
 
 class Router extends React.Component {
 	render() {
-		const { token, role, getUserInfo } = this.props
+		const { token, role, userInfo } = this.props
 		return (
 			<HashRouter>
 				<Switch>
@@ -23,7 +23,7 @@ class Router extends React.Component {
 								if (role) {
 									return <Layout />
 								} else {
-									getUserInfo(token).then(() => <Layout />)
+									userInfo(token).then(() => <Layout />)
 								}
 							}
 						}}
@@ -34,4 +34,4 @@ class Router extends React.Component {
 	}
 }
 
-export default connect(state => state.user, { getUserInfo })(Router)
+export default connect(state => state.user, { userInfo })(Router)

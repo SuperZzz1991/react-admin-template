@@ -4,19 +4,19 @@ import dashboardApi from './dashboard'
 import tableApi from './table'
 import excelApi from './excel'
 
-const userLogin = {
+const userLoginApi = {
     url: '/login',
     method: HttpMethod.POST
 }
 
-const userLogout = {
+const userLogoutApi = {
     url: '/logout',
     method: HttpMethod.POST
 }
 
 export {
-    userLogin,
-    userLogout,
+    userLoginApi,
+    userLogoutApi,
     userApi,
     dashboardApi,
     tableApi,

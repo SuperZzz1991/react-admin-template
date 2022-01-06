@@ -15,7 +15,7 @@ import {
 import EditForm from './Forms/editForm'
 
 import {tableApi} from '@/config/api'
-import {useRequest} from '@/utils/useRequest'
+import {useRequest} from '@/utils/request'
 
 const { Column } = Table
 const { Panel } = Collapse

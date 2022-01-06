@@ -12,7 +12,7 @@ import {
 } from 'antd'
 import { FileOutlined, FileExcelOutlined } from '@ant-design/icons'
 
-import {useRequest} from '@/utils/useRequest'
+import {useRequest} from '@/utils/request'
 import {excelApi} from '@/config/api'
 
 const { Panel } = Collapse

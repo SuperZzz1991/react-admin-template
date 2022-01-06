@@ -3,7 +3,7 @@ import {DeleteOutlined, EditOutlined} from '@ant-design/icons'
 import {Button, Card, message, Space, Table} from 'antd'
 import TypingCard from '@/components/TypingCard'
 
-import {useRequest} from '@/utils/useRequest'
+import {useRequest} from '@/utils/request'
 import {userApi} from '@/config/api'
 
 const { Column } = Table

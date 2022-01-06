@@ -1,54 +1,119 @@
+import { useReducer } from 'react'
+import { message } from 'antd'
 import axios from 'axios'
-import store from '@/store'
-import { Modal } from 'antd'
-import { getToken } from '@/utils/auth'
-import { logout } from '@/store/actions'
 
-//创建一个axios示例
-const service = axios.create({
-  baseURL: 'mock', // api 的 base_url
-  timeout: 5000, // request timeout
-})
+import { createHistory, deepDeleteBlankValue } from '@/utils/commons'
 
-// 请求拦截器
-service.interceptors.request.use(
-  (config) => {
-    // Do something before request is sent
-    if (store.getState().user.token) {
-      // 让每个请求携带token-- ['Authorization']为自定义key 请根据实际情况自行修改
-      config.headers.Authorization = getToken()
+/**
+ * axios配置
+ */
+axios.defaults.baseURL = 'mock'
+axios.defaults.timeout = 5000
+
+// axios拦截器统一处理request
+axios.interceptors.request.use(
+    config => {
+        if(config.data){
+            deepDeleteBlankValue(config.data)
+        }
+        // const history = createHistory()
+        // config.headers.Location = history.location.pathname + history.location.search
+        // console.log(config)
+        return config
+    },
+    error => {
+        console.error(error)
+        Promise.reject(error)
     }
-    return config
-  },
-  (error) => {
-    // Do something with request error
-    console.log(error) // for debug
-    Promise.reject(error)
-  }
 )
 
-// 响应拦截器
-service.interceptors.response.use(
-  response => response,
-  error => {
-    const { status } = error.response
-    if (status === 403) {
-      Modal.confirm({
-        title: '确定登出?',
-        content: '由于长时间未操作，您已被登出，可以取消继续留在该页面，或者重新登录',
-        okText: '重新登录',
-        cancelText: '取消',
-        onOk() {
-          let token = store.getState().user.token
-          store.dispatch(logout(token))
-        },
-        onCancel() {
-          console.log('Cancel')
-        },
-      })
+// axios拦截器统一处理response
+axios.interceptors.response.use(
+    response => {
+        // console.log('success', response)
+        const {data, status} = response
+        if(status !== 200) {
+            const error = {errorCode:status, errorMessage:'网络请求发生错误'}
+            return Promise.resolve({error})
+        }
+        if(data.state === '0000'){
+            return Promise.resolve({data})
+        }else{
+            const error = {errorCode:data.state, errorMessage:data.message}
+            return Promise.resolve({error})
+        }
+    },
+    error => {
+        // console.log('error',error)
+        const {status:errorCode, statusText:errorMessage} = error.response
+        return Promise.reject({errorCode, errorMessage})
     }
-    return Promise.reject(error)
-  }
 )
 
-export default service
+/**
+ * 自定义Hook:useRequest
+ */
+
+// 初始化state值
+const initialState = {
+    loading: false,
+    request: () => {}
+}
+
+// reducer(dispatch)方法:更新statec值
+const requestReducer = (state, action) => {
+    switch(action.type) {
+        case 'init':
+            return {...state, loading: true}
+        case 'success':
+            return {...state, loading: false}
+        case 'error':
+            return {...state, loading: false}
+        default:
+            return {...state}
+    }
+}
+
+// 定义useRequest方法
+const useRequest = config => {
+    // api请求信息
+    // console.log('config', config)
+    const [state, dispatch] = useReducer(requestReducer, initialState)
+    return {
+        ...state,
+        request: async(options) => {
+            try {
+                // 执行ajax请求
+                // console.log('options', options)
+                dispatch({type: 'init'})
+                const {data, error} = await axios({
+                    ...config,
+                    data: {...options}
+                })
+                if(error){
+                    showErrorMessage(error)
+                    dispatch({type: 'error', error})
+                    return {error}
+                }else{
+                    dispatch({type: 'success', data})
+                    return {data}
+                }
+            }catch(error){
+                showErrorMessage(error)
+                dispatch({type: 'error', error})
+                return {error}
+            }
+        }
+    }
+}
+
+// 显示错误信息
+const showErrorMessage = error => {
+    const msg = error.errorCode + ':' + error.errorMessage
+    message.error(msg)
+}
+
+export {
+    axios,
+    useRequest
+}

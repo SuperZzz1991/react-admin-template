@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Table, Tag } from 'antd'
 
-import {useRequest} from '@/utils/useRequest'
+import {useRequest} from '@/utils/request'
 import {dashboardApi} from '@/config/api'
 
 const columns = [
