@@ -19,7 +19,7 @@ const Login = (props) => {
     setLoading(true)
     login(username, password).then(data => {
       message.success('登录成功')
-      handleUserInfo(data.token)
+      handleUserInfo(data)
     }).catch(error => {
       setLoading(false)
       message.error(error)
@@ -28,9 +28,9 @@ const Login = (props) => {
 
   // 获取用户信息
   const handleUserInfo = (token) => {
-    getUserInfo(token).then((data) => {
+    getUserInfo(token).then(data => {
 
-    }).catch((error) => {
+    }).catch(error => {
       message.error(error)
     })
   }

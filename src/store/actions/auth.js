@@ -6,11 +6,11 @@ export const login = (username, password) => dispatch => {
   return new Promise((resolve, reject) => {
     reqLogin({ username: username.trim(), password: password }).then((response) => {
         const { data } = response
-        if (data.status === 0) {
-          const token = data.token
+        if (data.state === '0000') {
+          const token = data.data
           dispatch(setUserToken(token))
           setToken(token)
-          resolve(data)
+          resolve(token)
         } else {
           const msg = data.message
           reject(msg)
@@ -25,7 +25,8 @@ export const logout = username => (dispatch) => {
   return new Promise((resolve, reject) => {
     reqLogout({token:username}).then(response => {
         const { data } = response
-        if (data.status === 0) {
+        console.log(response)
+        if (data.state === '0000') {
             dispatch(resetUser())
             removeToken()
             resolve(data)
