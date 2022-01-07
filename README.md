@@ -19,9 +19,8 @@
 * react-countup：快速创建动画
 * react-custom-scrollbars：滚动条
 * react-draft-wysiwyg：富文本编辑
-* react-loadable：组件懒加载 => React.lazy和Suspense处理
 * react-transition-group：官方动画库
-* screenfull：实现全屏 => js报错暂不处理
+* screenfull：实现全屏
 * script-loader：在全局上下文中执行一次 JS 脚本
 * file-saver：导出文件
 * user-agent：浏览器请求头

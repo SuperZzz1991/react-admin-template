@@ -18,7 +18,7 @@ module.exports = {
 				libraryDirectory: 'es',
 				// style按需加载
 				// true => less
-				// 'css'
+				// 'css' => css
 				style: true
 			}			
 		]
@@ -32,7 +32,7 @@ module.exports = {
 				lessOptions: {
 					modifyVars: {
 						// 主题颜色
-						'@primary-color': '#1DA57A'
+						// '@primary-color': '#1DA57A'
 					},
 					javascriptEnabled: true
 				}
