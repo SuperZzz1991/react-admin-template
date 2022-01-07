@@ -61,7 +61,7 @@ class BaseApi {
 /**
  * Api树类型
  */
-class BaseTreeApi extends BaseApi {
+/*class BaseTreeApi extends BaseApi {
     getTreeList(): AxiosRequestConfig {
         return {
             url: `${this.module}/get-tree-list`,
@@ -74,7 +74,7 @@ class BaseTreeApi extends BaseApi {
             method: HttpMethod.POST,
         }
     }
-}
+}*/
 
 /**
  * Table类

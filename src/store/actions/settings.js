@@ -1,7 +1,7 @@
-import * as types from '../action-types'
+import { SETTINGS_CHANGE_SETTINGS } from '../action-types'
 export const changeSetting = (data) => {
   return {
-    type: types.SETTINGS_CHANGE_SETTINGS,
-    ...data,
+    type: SETTINGS_CHANGE_SETTINGS,
+    ...data
   }
 }

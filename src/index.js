@@ -4,13 +4,13 @@ import { Provider } from 'react-redux'
 import { ConfigProvider } from 'antd'
 import zhCN from 'antd/lib/locale/zh_CN'
 
+import '@/lib/monitor'
+import './mock'
 import store from './store'
 
 import App from './App'
 import './App.less'
 import '@/styles/index.less'
-import './mock'
-// import '@/lib/monitor'
 
 ReactDOM.render(
   <React.StrictMode>

@@ -16,8 +16,8 @@ axios.interceptors.request.use(
         if(config.data){
             deepDeleteBlankValue(config.data)
         }
-        // const history = createHistory()
-        // config.headers.Location = history.location.pathname + history.location.search
+        const history = createHistory()
+        config.headers.Location = history.location.pathname + history.location.search
         // console.log(config)
         return config
     },

@@ -1,39 +1,40 @@
-import * as types from '../action-types';
+import { TAGSVIEW_ADD_TAG, TAGSVIEW_EMPTY_TAGLIST, TAGSVIEW_DELETE_TAG, TAGSVIEW_CLOSE_OTHER_TAGS } from '../action-types'
+
 const initState = {
-  taglist: [],
-};
+  taglist: []
+}
 export default function app(state = initState, action) {
   switch (action.type) {
-    case types.TAGSVIEW_ADD_TAG:
-      const tag = action.tag;
+    case TAGSVIEW_ADD_TAG:
+      const tag = action.tag
       if (state.taglist.includes(tag)) {
-        return state;
+        return state
       } else {
         return {
           ...state,
-          taglist: [...state.taglist, tag],
-        };
+          taglist: [...state.taglist, tag]
+        }
       }
-    case types.TAGSVIEW_DELETE_TAG:
+    case TAGSVIEW_DELETE_TAG:
       return {
         ...state,
-        taglist: [...state.taglist.filter((item) => item !== action.tag)],
-      };
-    case types.TAGSVIEW_EMPTY_TAGLIST:
-      return {
-        ...state,
-        taglist: [
-          ...state.taglist.filter((item) => item.path === '/dashboard'),
-        ],
-      };
-    case types.TAGSVIEW_CLOSE_OTHER_TAGS:
+        taglist: [...state.taglist.filter((item) => item !== action.tag)]
+      }
+    case TAGSVIEW_EMPTY_TAGLIST:
       return {
         ...state,
         taglist: [
-          ...state.taglist.filter((item) => item.path === '/dashboard' || item === action.tag),
-        ],
-      };
+          ...state.taglist.filter((item) => item.path === '/dashboard')
+        ]
+      }
+    case TAGSVIEW_CLOSE_OTHER_TAGS:
+      return {
+        ...state,
+        taglist: [
+          ...state.taglist.filter((item) => item.path === '/dashboard' || item === action.tag)
+        ]
+      }
     default:
-      return state;
+      return state
   }
 }

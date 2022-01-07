@@ -1,5 +1,5 @@
-import {axios} from '@/utils/request'
-import * as types from '../action-types'
+import { axios } from '@/utils/request'
+import { USER_SET_USER_TOKEN, USER_SET_USER_INFO, USER_RESET_USER } from '../action-types'
 import { setToken, removeToken } from '@/utils/commons'
 import { userLoginApi, userLogoutApi, userApi } from '@/config/api'
 
@@ -64,20 +64,20 @@ export const userInfo = token => dispatch => {
 
 export const setUserToken = (token) => {
     return {
-        type: types.USER_SET_USER_TOKEN,
+        type: USER_SET_USER_TOKEN,
         token
     }
 }
 
 export const setUserInfo = (userInfo) => {
     return {
-        type: types.USER_SET_USER_INFO,
+        type: USER_SET_USER_INFO,
         ...userInfo
     }
 }
 
 export const resetUser = () => {
     return {
-        type: types.USER_RESET_USER,
+        type: USER_RESET_USER,
     }
 }

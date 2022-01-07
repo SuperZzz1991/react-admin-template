@@ -1,12 +1,13 @@
-import * as types from '../action-types';
+import { APP_TOGGLE_SIDEBAR, APP_TOGGLE_SETTINGPANEL } from '../action-types'
+
 export const toggleSiderBar = () => {
   return {
-    type: types.APP_TOGGLE_SIDEBAR
-  };
-};
+    type: APP_TOGGLE_SIDEBAR
+  }
+}
 
 export const toggleSettingPanel = () => {
   return {
-    type: types.APP_TOGGLE_SETTINGPANEL
-  };
-};
+    type: APP_TOGGLE_SETTINGPANEL
+  }
+}

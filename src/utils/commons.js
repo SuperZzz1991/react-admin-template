@@ -24,7 +24,6 @@ export function createHistory() {
   return createHashHistory()
 }
 
-
 // token存储
 const tokenKey = 'Token'
 
